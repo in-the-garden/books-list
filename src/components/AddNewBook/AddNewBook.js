@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 
 import './AddNewBook.css';
 import closeIcon from '../../images/close-icon.svg';
+import { useEffect } from 'react/cjs/react.development';
 
 function AddNewBook({ onClose, onAddNewBook, isOpened }) {
   const [title, setTitle] = useState('');
@@ -21,13 +22,21 @@ function AddNewBook({ onClose, onAddNewBook, isOpened }) {
   }
 
   function handleSubmit(evt) {
+    const id = parseInt(Math.random()*1000);
     evt.preventDefault();
     onAddNewBook ({
+      id,
       title,
       author,
       link
     })
   }
+
+  useEffect(() => {
+    setTitle('');
+    setAuthor('');
+    setLink('');
+  }, [isOpened])
 
   return (
     <div className={`popup ${isOpened && 'popup_is-opened'}`}>
@@ -61,7 +70,7 @@ function AddNewBook({ onClose, onAddNewBook, isOpened }) {
             value={link}
             onChange={handleChangeBookLink}
           />
-          <button className="popup__save" type="submit">Сохранить</button>
+          <button className={`popup__save ${title === '' || author === '' ? 'popup__save_disabled' : ''}`} type="submit">Сохранить</button>
       </form>
     </div>
   )

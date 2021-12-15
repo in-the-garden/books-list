@@ -4,6 +4,7 @@
   max-width: 250px;
   display: flex;
   flex-direction: column;
+  position: relative;
 }
 
 .card__cover {
@@ -14,5 +15,67 @@
 }
 
 .card__cover_no-image {
-  background-color: aqua;
+  background-color: #000000b2;
+  color: #FFFFFF;
+  font-size: 20px;
+  line-height: 24px;
+  font-weight: 500;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.card__info {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  color: #FFFFFF;
+}
+
+.card__title {
+  margin: 10px 0 0;
+  font-size: 16px;
+  line-height: 18px;
+  font-weight: 600;
+}
+
+.card__author {
+  margin: 5px 0 0;
+  font-size: 12px;
+  line-height: 14px;
+  font-weight: 400;
+}
+
+.card__button-container {
+  position: absolute;
+  top: 3%;
+  right: 5%;
+  display: flex;
+  flex-direction: row;
+  background-color: transparent;
+}
+
+.card__edit {
+  padding: 0;
+  width: 20px;
+  height: 20px;
+  border: none;
+  outline: none;
+  box-sizing: border-box;
+  background-image: url(../../images/edit-btn.svg);
+  background-position: center;
+  background-color: inherit;
+}
+
+.card__remove {
+  margin-left: 5px;
+  padding: 0;
+  width: 20px;
+  height: 20px;
+  border: none;
+  outline: none;
+  box-sizing: border-box;
+  background-image: url(../../images/remove-btn.svg);
+  background-position: center;
+  background-color: inherit;
 }

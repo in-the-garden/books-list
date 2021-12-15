@@ -8,6 +8,7 @@
   position: sticky;
   top: 0;
   background-color: #282c34e7;
+  z-index: 1;
 }
 
 .header__title {

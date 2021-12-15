@@ -1,13 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { useEffect } from 'react/cjs/react.development';
 import BookCard from '../BookCard/BookCard';
 
 import './BooksList.css';
 
-function BooksList({ books }) {
+function BooksList({ books, onBookRemove, onOpen }) {
   return (
     <section className='books-list'>
-      {books.map(({ id, title, author, link }) =>
-        <BookCard key={id} title={title} author={author} link={link}/>)
+      {books.map((book) =>
+        <BookCard key={book.id} book={book} onBookRemove={onBookRemove} onOpen={onOpen}/>)
       }
     </section>
   )
