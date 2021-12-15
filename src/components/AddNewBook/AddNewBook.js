@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 
 import './AddNewBook.css';
 import closeIcon from '../../images/close-icon.svg';

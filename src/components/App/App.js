@@ -4,9 +4,8 @@ import AddNewBook from '../AddNewBook/AddNewBook';
 import BooksList from '../BooksList/BooksList';
 import Header from '../Header/Header';
 import EditBook from '../EditBook/EditBook';
+import Footer from '../Footer/Footer';
 import './App.css';
-
-import saved from '../../assets/books-data.json'
 
 function App() {
   const [books, setBooks] = useState(JSON.parse(localStorage.getItem('savedBooks')));
@@ -20,17 +19,28 @@ function App() {
 
   function handleOpenEditPopup(book) {
     setSelectedBook({...book, isOpened: true});
-    console.log(book);
   }
 
-  function handleClosePopup() {
+  function handleCloseAllPopup() {
     setAddPopupOpen(false);
-    setSelectedBook({title: '', author: '', link: '', isOpen: false});
+    setSelectedBook({id: 0, title: '', author: '', link: '', isOpen: false});
   }
 
   function handleAddBookSubmit(book) {
     setBooks([...books, book]);
-    handleClosePopup();
+    handleCloseAllPopup();
+  }
+
+  const handleEscClose = (evt) => {
+    if (evt.key === 'Escape') {
+      handleCloseAllPopup();
+    };
+  }
+
+  const handleOverlayClose = (evt)  => {
+    if (evt.target.classList.contains('popup')) {
+      handleCloseAllPopup();
+    };
   }
 
   function handleEditBookSubmit(book) {
@@ -39,7 +49,7 @@ function App() {
         return book;
       } return item
     }))
-    handleClosePopup();
+    handleCloseAllPopup();
   }
 
   function handleBookRemove(book) {
@@ -51,14 +61,24 @@ function App() {
     console.log(books);
   },[books])
 
+  useEffect(() => {
+    document.addEventListener('keydown', handleEscClose);
+    document.addEventListener('mousedown', handleOverlayClose);
+    return() =>{
+        document.removeEventListener('keydown', handleEscClose);
+        document.removeEventListener('mousedown', handleOverlayClose);
+    }
+}, [])
+
   return (
     <div className="body">
       <Header onOpen={handleOpenAddPopup}/>
       <main>
         <BooksList books={books} onBookRemove={handleBookRemove} onOpen={handleOpenEditPopup} />
-        <AddNewBook onAddNewBook={handleAddBookSubmit} onClose={handleClosePopup} isOpened={addPopupOpen}/>
-        <EditBook selectedBook={selectedBook} onEditBookInfo={handleEditBookSubmit} onClose={handleClosePopup} isOpened={selectedBook.isOpened}/>
+        <AddNewBook onAddNewBook={handleAddBookSubmit} onClose={handleCloseAllPopup} isOpened={addPopupOpen}/>
+        <EditBook selectedBook={selectedBook} onEditBookInfo={handleEditBookSubmit} onClose={handleCloseAllPopup} isOpened={selectedBook.isOpened}/>
       </main>
+      <Footer />
     </div>
   );
 }

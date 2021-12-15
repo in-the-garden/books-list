@@ -1,8 +1,7 @@
-import React from 'react';
-
 import './BookCard.css';
 
 function BookCard({ book, onBookRemove, onOpen }) {
+
   function handleEditBook() {
     onOpen(book)
   }
