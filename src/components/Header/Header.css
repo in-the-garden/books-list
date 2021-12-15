@@ -33,3 +33,21 @@
   cursor: pointer;
   opacity: .6;
 }
+
+@media (max-width: 650px) {
+  .header {
+    margin: 0;
+    padding: 20px 40px;
+  }
+
+  .header__title {
+    margin: 0;
+    font-size: 40px;
+    line-height: 44px;
+  }
+
+  .header__add-btn {
+    font-size: 14px;
+    line-height: 16px;
+  }
+}

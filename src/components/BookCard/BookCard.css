@@ -65,6 +65,7 @@
   background-image: url(../../images/edit-btn.svg);
   background-position: center;
   background-color: inherit;
+  transition: opacity 1s ease-in;
 }
 
 .card__remove {
@@ -78,4 +79,11 @@
   background-image: url(../../images/remove-btn.svg);
   background-position: center;
   background-color: inherit;
+  transition: opacity 1s ease-in;
+}
+
+.card__edit:hover,
+.card__remove:hover {
+  cursor: pointer;
+  opacity: .6;
 }
