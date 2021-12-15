@@ -1,0 +1,18 @@
+.card {
+  box-sizing: border-box;
+  margin: 0;
+  max-width: 250px;
+  display: flex;
+  flex-direction: column;
+}
+
+.card__cover {
+  box-sizing: border-box;
+  height: 300px;
+  object-position: center;
+  object-fit: fill;
+}
+
+.card__cover_no-image {
+  background-color: aqua;
+}
